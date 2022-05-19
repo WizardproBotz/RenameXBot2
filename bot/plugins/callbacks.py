@@ -102,6 +102,7 @@ async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
         await show_settings(cb.message)
     elif cb.data == "showFileInfo":
         replied_m = cb.message.reply_to_message
+        await cb.message.delete(True)
         _file_name = get_media_file_name(replied_m)
         text = f"**File Name:** `{_file_name}`\n\n" \
                f"**File Extension:** `{_file_name.rsplit('.', 1)[-1].upper()}`\n\n" \
@@ -114,7 +115,7 @@ async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
             disable_web_page_preview=True,
             reply_markup=types.InlineKeyboardMarkup(
                 [[types.InlineKeyboardButton("Close Message", callback_data="closeMessage")]] ) )
-        await cb.message.delete(True)
+        
                  
     elif cb.data == "closeMessage":
         await cb.message.delete(True)
