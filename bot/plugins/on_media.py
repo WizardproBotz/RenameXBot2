@@ -14,8 +14,8 @@ async def on_media_handler(c: Client, m: "types.Message"):
     if not m.from_user:
         return await m.reply_text("I don't know about you sar :(")
     await add_user_to_database(c, m)
-    await asyncio.sleep(3)
-    await c.send_flooded_message(
+    await asyncio.sleep(1)
+    k = await c.send_flooded_message(
         chat_id=m.chat.id,
         text="**Should I show File Information?**",
         reply_markup=types.InlineKeyboardMarkup(
@@ -25,3 +25,5 @@ async def on_media_handler(c: Client, m: "types.Message"):
         disable_web_page_preview=True,
         reply_to_message_id=m.message_id
     )
+    await asyncio.sleep(3)
+    await k.delete()
