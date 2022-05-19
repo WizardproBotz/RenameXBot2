@@ -25,7 +25,7 @@ async def show_thumbnail(c: Client, m: "types.Message"):
 @Client.on_message(filters.private & filters.photo)
 async def set_thumbnail(client,message):
 	file_id = str(message.photo.file_id)
-	addthumb(message.chat.id , file_id)
+	set_thumbnail(message.chat.id , file_id)
 	await message.reply_text("**Your Custom Thumbnail Saved Successfully** ✅")
 
 
